@@ -9,6 +9,7 @@ RELEASE		= AllTheDBTheory
 
 PARTS		= chapters/functional_dependency \
 			  chapters/normal_forms \
+			  chapters/relational_algebra \
 			  appendices/er_diagrams
 
 FIGURES 	= 

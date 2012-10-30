@@ -1,0 +1,80 @@
+\chapter{Relational Algebra}
+
+Given a relation $(S,R)$, we define a formalism for retrieving
+information.
+
+\section{Select}
+
+The \emph{selection} operator denoted \Select{} takes two paramters: a
+set of attributes in $S$ and a relation $(S,R)$, and returns a new
+relation $(S',R')$ in which $S'$ contains only the specified
+attributes of $S$ and $R'$ contains modified tuples with only values
+corresponding to the attributes of $S'$.  We denote this as
+\Select{X}Y where X is the set of attributes to keep and Y is the
+relation.
+
+\section{Project}
+
+The \emph{projection} operator denoted \Project{} takes two
+parameters: a set of conditions on the attributes of $S$ and a
+relation $(S,R)$, and returns a new relation $(S,R')$ where $R'
+\subseteq R$ is the set of all tuples that meet the specified
+conditions.  We donte this as \Project{X}Y where X is the set of
+conditions and Y is the relation.
+
+\section{Renaming Attributes}
+
+It is often useful to rename attributes and save intermediate
+relations.  We do this with the \GoesTo operator as in the following
+example.
+
+Stuff(Noms,NotNoms) \GoesTo \Select{Edibles,Inedibles} Items
+
+This example selects the Edibles and Inedibles attributes of the Items
+relation, and saves them to a new relation Stuff and rename the
+attributes to Noms and NotNoms.
+
+\section{Cartesian Product}
+
+The \emph{Cartesian Product} binary operator denoted \CartesianProduct
+takes relations $(S,R)$ and $(S',R')$ and returns the relation $(S
+\cup S',R'')$ where $R''$ is a set of tuples $\{r r' | r \in R, r' \in
+R' \}$.
+
+\section{Natural Join}
+
+The \emph{natural join} binary operator denoted \NaturalJoin takes
+relations $(S,R)$ and $(S',R')$ where $J = S \cap S' \neq \emptyset$,
+and returns $(S \cup S',R'')$ where $R''$ is the set of tuples $\{r r'
+| r \in R, r' \in R', r(J) = r'(J) \}$.
+
+\section{Join}
+
+The \emph{join} operator denoted \Join{} takes relations $(S,R)$,
+$(S',R')$, and a function $f$, and returns the relation $(S \cup
+S,R'')$ where $R''$ is the set of tuples $\{ r r' | r \in R, r' \in
+R', f(r,r') = true \}$.
+
+For example:
+
+CALL
+\Join{CALL.portid = CALL\_FORWARD\_NUMBERS.portid}
+CALL\_FORWARD\_NUMBERS
+
+Joins CALL and CALL\_FORWARD\_NUMBERS when CALL.portid =
+CALL\_FORWARD\_NUMBERS.portid.
+
+\section{Aggregate Function}
+
+The \emph{Aggregate Function} takes a set of attributes from the
+relation, a function list, and a relation and returns the result of
+applying the function to the tuples of the relation and grouping by
+the given attributes.  Available functions are SUM, AVERAGE, MINIMUM,
+MAXIMUM, COUNT.
+
+For example:
+
+lineid \AggregateFunction{count scode} SERVICE\_SUBSCRIBERS
+
+Returns the count of unique values for attribute scode, grouped by
+lineid on relation SERVICE\_SUBSCRIBERS.
