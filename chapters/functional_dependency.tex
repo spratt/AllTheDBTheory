@@ -1,5 +1,49 @@
 \chapter{Functional Dependency}
 
+\section{Relation}
+
 \begin{definition}
-Given a set of n-tuples $R$, we say that 
+A \emph{relation} is an ordered pair ($S$,$R$), where $S$ is an
+n-tuple of names of attributes, and $R$ is a set of n-tuples with
+values for the attributes as described by $S$.
+\end{definition}
+
+Given $T \in R$ and $S = (s_1,s_2,...s_n)$, we denote the value for
+attribute $s_1$ in $T$ as $T(s_1)$.
+
+\section{Functional Dependency}
+
+\begin{definition}
+
+Given $R$ and $S = (X,Y)$, we say that $X$ determines $Y$, denoted $X
+\rightarrow Y$, if $T_1(X) = T_2(X)$ implies $T_1(Y) = T_2(Y)$ for any
+$T_1,T_2 \in R$, and we call this a \emph{functional dependency}.
+
+\end{definition}
+
+\section{Armstrong's Axioms}
+
+\begin{enumerate}
+\item \emph{Reflexivity}: if $Y \subseteq X$ then $X \rightarrow Y$
+\item \emph{Augmentation}: if $X \rightarrow Y$ then $XZ \rightarrow YZ$ for any $Z$
+\item \emph{Transitivity}: if $X \rightarrow Y$ and $Y \rightarrow Z$ then $X \rightarrow Z$
+\end{enumerate}
+
+\section{Closure}
+
+\begin{definition}
+
+The \emph{closure} of a set $F$ of functional dependencies, denoted $F+$, is
+the set of all functional dependencies that can be inferred from those
+in $F$.
+
+\end{definition}
+
+\section{Minimal Cover}
+
+\begin{definition}
+
+The \emph{minimal cover} $G$ of a set $F$ of functional dependencies,
+is the smallest set such that $G+ = F+$.
+
 \end{definition}

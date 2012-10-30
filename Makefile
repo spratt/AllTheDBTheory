@@ -7,7 +7,9 @@ BUILD		= notes
 
 RELEASE		= AllTheDBTheory
 
-PARTS		= 
+PARTS		= chapters/functional_dependency \
+			  chapters/normal_forms \
+			  appendices/er_diagrams
 
 FIGURES 	= 
 

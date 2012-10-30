@@ -1,0 +1,74 @@
+\chapter{Normal Forms}
+
+\section{First Normal Form (1NF)}
+
+\begin{definition}
+
+A \emph{superkey} of a relation $S,R$ is a set of attributes $X$ such
+that $t_1(X) = t_2(X)$ if and only if $t_1 = t_2$.  Such attributes
+are said to be \emph{prime}.  
+
+A superkey is said to be \emph{minimal} if it has the least number of
+attributes required to meet this condition.  Such a minimal superkey
+is called a candidate key.
+
+\end{definition}
+
+\begin{definition}
+
+A set of relations is in \emph{First Normal Form} if every relation
+has a minimal superkey.
+
+\end{definition}
+
+\section{Second Normal Form (2NF)}
+
+\begin{definition}
+
+A \emph{partial dependency} is a dependency of a non-prime attribute
+on a proper subset of a candidate key.
+
+\end{definition}
+
+\begin{definition}
+
+A set of relations is in \emph{Second Normal Form} if it is in 1NF and
+it contains no partial dependencies.
+
+\end{definition}
+
+\section{Third Normal Form (3NF)}
+
+\begin{definition}
+
+A \emph{trivial dependency} is a dependency $X \rightarrow Y$ where $Y
+\subseteq X$.
+
+\end{definition}
+
+\begin{definition}
+
+A \emph{transitive dependency} is a dependency inferred from the
+transitive axiom.  If $X \rightarrow Y$ is a transitive dependency, we
+say $Y$ is \emph{transitively dependendent} on $X$, otherwise $Y$ is
+\emph{directly dependent} on $X$.
+
+\end{definition}
+
+\begin{definition}
+
+A set of relations is in \emph{Third Normal Form} if it is in 2NF and
+all functional dependencies $X \rightarrow Y$ are trivial, or X is a
+superkey, or all attributes $a \in (X - Y)$ are prime.
+
+\end{definition}
+
+\section{Boyce-Codd Normal Form (BCNF)}
+
+\begin{definition}
+
+A set of relations is in \emph{Boyce-Codd Normal Form} if it is in 2NF
+and all functional dependencies $X \rightarrow Y$ are trivial or X is
+a superkey.
+
+\end{definition}

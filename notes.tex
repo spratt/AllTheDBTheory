@@ -68,15 +68,27 @@
 \fancyhead{}             % clear header
 \fancyfoot{}
 
-\fancyhead[L]{Algorithms Notes}
+\fancyhead[L]{All The Database Theory}
 \fancyhead[C]{Page \thepage }
-\fancyhead[R]{Alexis Beingessner \\ Simon Pratt}
+\fancyhead[R]{Simon Pratt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pretty math macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\summ}[2]{\ensuremath{\displaystyle\sum\limits_{#1}^{#2}}} 
 %pretty summation
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Relational Algebra
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\GoesTo}{$\leftarrow$ }
+\newcommand{\Project}[1]{{\Huge\bf$\pi$}$_{\text{#1}}$}
+\newcommand{\Select}[1]{{\Huge\bf$\sigma$}$_{\text{#1}}$}
+\renewcommand{\Join}[1]{{\Huge\bf$\otimes$}$_{\text{#1}}$}
+\newcommand{\CartesianProduct}{{\Huge\bf$\times$}}
+\newcommand{\NaturalJoin}{{\Huge\bf$*$} }
+\newcommand{\AggregateFunction}[1]{{\Huge\bf$f$}$_{\text{#1}}$}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document
@@ -87,11 +99,12 @@
 \author{Simon Pratt}
 
 \begin{document}
-\maketitle
 \tableofcontents
+\newpage
 \begin{multicols}{2}
   
   \include{chapters/functional_dependency}
+  \include{chapters/normal_forms}
   \appendix
   \include{appendices/er_diagrams}
 
