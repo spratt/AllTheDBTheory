@@ -12,7 +12,9 @@ PARTS		= chapters/functional_dependency \
 			  chapters/relational_algebra \
 			  appendices/er_diagrams
 
-FIGURES 	= 
+FIGURES 	= figs/entity.png \
+			  figs/strong_entity.png \
+			  figs/weak_entity.png
 
 TEX     	= pdflatex
 TEXOPTS 	= -halt-on-error

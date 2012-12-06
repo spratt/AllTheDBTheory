@@ -1,0 +1,6 @@
+graph {
+    entity [shape=box, label=<
+    <TABLE CELLBORDER="0">
+    <TR><TD><IMG SRC="weak_entity_text.png"/></TD></TR>
+    </TABLE>>];
+}

@@ -1,0 +1,3 @@
+graph {
+    entity [shape=box, label=<<b>Strong Entity Name</b> <br/> <u>Natural Key</u>>];
+}
