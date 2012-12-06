@@ -1,7 +1,5 @@
 \chapter{Implementation}
 
-Topics: disk blocks, hashing, and B+ trees.
-
 Databases store data persistently on a hard disk, and since most hard
 disks in use today are revolving magnetic disks, databases are highly
 optimized for this.
@@ -28,14 +26,52 @@ In a B+ tree, a branching factor $b$ is specified and largely
 determines the structure of the tree.  The branching factor $b$ is an
 upper bound on the number of children each internal node can have.
 
-The smallest possible B+ tree contains 2 nodes: the root node with one
-child data node.  
+The data stored in a B+ tree must be associated with a fully ordered
+key, which determines the order of the data in the leaf nodes.
 
-If at any point the number of nodes pointed to by the root surpasses
-the branching factor $b$, the nodes are split between two new internal
-nodes to which the root now points.  Note that these nodes may be data
-nodes as in the base case, or they may be internal nodes which may
-themselves point to internal nodes or data nodes.
+\begin{center}
+\includegraphics[scale=0.4]{figs/Bplustree.png}
+\figcaption{A B+ tree, image courtesy of
+  \href{https://en.wikipedia.org/wiki/File:Bplustree.png}{Wikipedia}}
+\end{center}
 
+A B+ tree has many types of nodes:
 
+\begin{itemize}
 
+\item A leaf node which contains data.
+
+\item An internal root node which contains from 2 to $b$ references to
+  internal nodes.  This node also stores the key values on which the
+  internal nodes are split.
+
+\item An internal (non-root) node which contains between $\lceil b/2
+  \rceil$ references to either other internal or leaf nodes.  If this
+  node points to internal nodes, it contains the keys on which the
+  internal nodes are split.  If this node points to leaf nodes, it
+  contains the keys of the leaf nodes it references.
+
+\end{itemize}
+
+The smallest possible B+ tree contains just a single leaf node
+containing data.  
+
+In general, when a datum $d$ is added to the tree, we find the
+location where $d$ ought to be.  
+
+If that location is in the root leaf node, and the root leaf node
+contains less than $b$ data we simply add it and we're done.  If there
+are $b$ other data on the root leaf node, it is split into 2 leaf
+nodes referenced to by an internal root node.
+
+If $d$ belongs in a non-root leaf node $N$, containing less than $b$
+other data we can simply add $d$ and we're done.  If $N$ contains $b$
+other data, we must split $N$ into two leaf nodes $N_1$ and $N_2$.  We
+remove the reference to $N$ from $N$'s parent, and add the references
+to $N_1$ and $N_2$.  Note that this may cause a cascade of node splits
+up to the root.
+
+The complexity of insertion is $\BigOh{log_b(n)}$.  Note that our choice
+of $b$ usually depends on the block size of the disk.  We would like
+each node to occupy an entire block on disk, which minimizes block
+reads.
