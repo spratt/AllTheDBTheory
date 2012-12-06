@@ -3,3 +3,94 @@
 SQL is a Data Definition Language (DDL) and a Data Manipulation
 Language (DML), which means that SQL is suitable for both defining and
 manipulating large amounts of data.
+
+\section{SELECT}
+
+The \texttt{SELECT} operation in SQL is a combination of the
+\emph{select} and \emph{project} operations in relational algebra.
+The basic syntax is:
+
+\texttt{SELECT columns FROM table WHERE condition;}
+
+Where \texttt{columns} are columns in table \texttt{table}, and
+\texttt{condition} is a boolean condition like \texttt{col1 > 5}.
+
+For example, given the following \texttt{coders} table schema:
+
+\begin{tabular}{|c|}
+  
+  \hline
+  {\bf name} \\
+  \hline
+  codingAbility \\
+  \hline
+  birthDate \\
+  \hline
+  
+\end{tabular}
+
+We could run the following query:
+
+\texttt{SELECT name, birthDate FROM coders \newline
+WHERE codingAbility > 9000;}
+
+Which would return all coders whose codingAbility is over 9000.
+
+There are many extra options that can be specified on a
+\texttt{SELECT} query, the most useful of which is easily the
+\texttt{ORDER BY} option:
+
+\texttt{SELECT name, birthDate FROM coders \newline
+ORDER BY codingAbility DESC;}
+
+Which would return the names and birthDates of the coders in
+descending order of their codingAbility.
+
+\section{JOIN}
+
+A \texttt{JOIN} in SQL is just like a join in relational algebra.
+There are many joins in SQL, but by far the most common is the
+\texttt{INNER JOIN}, which only returns rows on which the join
+condition can be met.
+
+Given the \texttt{coders} table described in the previous section, and
+the \texttt{coderAlias} table whose schema is as follows:
+
+\begin{tabular}{|c|}
+  
+  \hline
+  {\bf name} \\
+  \hline
+  alias \\
+  \hline
+  
+\end{tabular}
+
+We can make the following query:
+
+\texttt{SELECT alias, birthDate \newline
+FROM coders INNER JOIN coderAlias \newline
+ON coders.name = coderAlias.name;}
+
+Which would return the alias and birthDate of all coders who have a
+row in both the \texttt{coders} and \texttt{coderAlias} tables.
+
+\section{Aggregate Functions}
+
+Just like in relational algebra, SQL has the concept of aggregate
+functions such as: \texttt{MIN}, \texttt{MAX}, and \texttt{COUNT}.
+
+A query to count the number of coders with each birthDate is as
+follows:
+
+\texttt{SELECT birthDate, COUNT(*) AS count FROM coders \newline
+GROUP BY birthDate;}
+
+The \texttt{GROUP BY} statement is crucial in this case, to aggregate
+the data by coder.  Without the \texttt{GROUP BY} statement, the query
+would simply count how many birthDates were associated to each coder,
+which would be 1 in all cases because each coder has a unique row in
+the table.
+
+Note that this query also renames the \texttt{COUNT(*)} column of the
+results as \texttt{count}, for convenience.
