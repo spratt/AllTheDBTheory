@@ -1,3 +1,41 @@
 \chapter{Implementation}
 
 Topics: disk blocks, hashing, and B+ trees.
+
+Databases store data persistently on a hard disk, and since most hard
+disks in use today are revolving magnetic disks, databases are highly
+optimized for this.
+
+Revolving magnetic disks, as opposed to solid state disks, have a
+physical disk that spins under a moving read/write head.  Such disks
+are organized into sectors (a slice of the disk), and each sector is
+further divided into blocks of a fixed number of bytes.  In order to
+read to or write a block in a sector of the spinning disk, both the
+disk and head must move, which is the bottleneck in the speed of a
+drive.
+
+Databases are optimized for this scenario, in that they minimize the
+number of blocks to be read from the drive, thus minimizing the amount
+of disk and head movement.
+
+\section{B+ Trees}
+
+The biggest optimization to minimize block retrievals is to store as
+much information within a block as possible.  A B+ tree is a tree with
+a large branching factor wherein all data nodes are leafs.
+
+In a B+ tree, a branching factor $b$ is specified and largely
+determines the structure of the tree.  The branching factor $b$ is an
+upper bound on the number of children each internal node can have.
+
+The smallest possible B+ tree contains 2 nodes: the root node with one
+child data node.  
+
+If at any point the number of nodes pointed to by the root surpasses
+the branching factor $b$, the nodes are split between two new internal
+nodes to which the root now points.  Note that these nodes may be data
+nodes as in the base case, or they may be internal nodes which may
+themselves point to internal nodes or data nodes.
+
+
+
