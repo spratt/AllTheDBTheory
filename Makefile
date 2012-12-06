@@ -14,7 +14,9 @@ PARTS		= chapters/functional_dependency \
 
 FIGURES 	= figs/entity.png \
 			  figs/strong_entity.png \
-			  figs/weak_entity.png
+			  figs/weak_entity.png \
+			  figs/alternate_entity.png \
+			  figs/relationship.png
 
 TEX     	= pdflatex
 TEXOPTS 	= -halt-on-error

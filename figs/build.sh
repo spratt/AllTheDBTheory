@@ -5,3 +5,8 @@ for f in `ls *.dot`; do
 	file="${f%.*}"
 	dot -Tpng $f -o $file.png
 done
+for f in `ls *.neato`; do
+	ext="${f##*.}"
+	file="${f%.*}"
+	neato -Tpng $f -o $file.png
+done

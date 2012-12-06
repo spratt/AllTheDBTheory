@@ -1,0 +1,9 @@
+graph {
+    splines = polyline;
+    overlap = false;
+    farm [shape=box, label=<<b>Farm</b> <br/> <u>Name</u>>];
+    animal [shape=box, label=<<b>Animal</b> <br/> <u>Name</u>>];
+    belongsTo [shape=diamond];
+    animal -- belongsTo [label=" n ",color="black:black"];
+    belongsTo -- farm [label=" 1 "];
+}

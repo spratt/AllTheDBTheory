@@ -1,0 +1,8 @@
+graph {
+    entity [shape=box, label="Entity"];
+    key [label=<<u>Key</u>>];
+    attr [label="AnAttribute"];
+    attr2 [label="AnotherAttribute"];
+    key -- entity -- attr;
+    attr2 -- entity;
+}
